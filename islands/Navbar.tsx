@@ -40,16 +40,18 @@ export default function Navbar() {
         {/* links desktop */}
         <div class="hidden md:flex items-center gap-3 text-2xl">
           <LinkItem href="/" icon="home" />
-          <LinkItem href="/about" icon="information-outline" />
-          <LinkItem href="/contact" icon="email-outline" />
+          <LinkItem href="/orders" icon="package-variant" />
+          <LinkItem href="/favorites" icon="heart" />
+          <LinkItem href="/profile" icon="account" />
         </div>
       </div>
 
       {/* bottom navigation só em mobile */}
       <div class="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur rounded-2xl px-3 py-2 shadow-lg flex items-center gap-3 text-2xl">
         <LinkItem href="/" icon="home" />
-        <LinkItem href="/about" icon="information-outline" />
-        <LinkItem href="/contact" icon="email-outline" />
+        <LinkItem href="/orders" icon="package-variant" />
+        <LinkItem href="/favorites" icon="heart" />
+        <LinkItem href="/profile" icon="account" />
       </div>
     </nav>
   );
