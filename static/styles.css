@@ -3,17 +3,15 @@
 @tailwind utilities;
 
 html {
-  @apply bg-white text-black;
+  @apply bg-background-light text-text-light;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
-    @apply bg-gray-900 text-white;
+    @apply bg-background-dark text-text-dark;
   }
 }
 
 a {
-  @apply hover:text-blue-600 dark:hover:text-blue-400;
-  text-decoration: none;
+  @apply no-underline text-primary-light dark:text-primary-dark hover:underline;
 }
-

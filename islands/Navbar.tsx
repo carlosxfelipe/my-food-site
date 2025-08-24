@@ -3,22 +3,20 @@ import { useSignal } from "@preact/signals";
 export default function Navbar() {
   const isOpen = useSignal(false);
   const linkClass =
-    "no-underline hover:text-green-700 dark:hover:text-blue-400";
+    "no-underline text-primary-light dark:text-primary-dark hover:underline";
 
   return (
-    <nav class="w-full bg-[#86efac] dark:bg-gray-800 text-black dark:text-white p-4 shadow">
+    <nav class="w-full bg-surface-light dark:bg-surface-dark text-onSurface-light dark:text-onSurface-dark p-4 shadow">
       <div class="flex items-center justify-between px-4">
-        {/* Logo + Título */}
         <div class="flex items-center space-x-2">
           <img src="/logo.svg" width="32" height="32" alt="Fresh logo" />
           <span class="font-bold text-lg">Meu Site Fresh</span>
         </div>
 
-        {/* Botão hamburguer */}
         <button
           type="button"
           class="md:hidden"
-          onClick={() => isOpen.value = !isOpen.value}
+          onClick={() => (isOpen.value = !isOpen.value)}
           aria-label="Toggle menu"
         >
           <svg
@@ -36,7 +34,6 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Links horizontais */}
         <div class="hidden md:flex space-x-4">
           <a href="/" class={linkClass}>Início</a>
           <a href="/about" class={linkClass}>Sobre</a>
@@ -44,7 +41,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Dropdown */}
       {isOpen.value && (
         <div class="flex flex-col mt-2 space-y-2 md:hidden px-4">
           <a href="/" class={linkClass}>Início</a>
