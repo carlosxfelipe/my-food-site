@@ -1,9 +1,10 @@
 import { useSignal } from "@preact/signals";
+import Icon from "../components/Icon.tsx";
 
 export default function Navbar() {
   const isOpen = useSignal(false);
   const linkClass =
-    "no-underline text-primary-light dark:text-primary-dark hover:underline";
+    "no-underline text-primary-light dark:text-primary-dark hover:underline flex items-center justify-center";
 
   return (
     <nav class="w-full bg-surface-light dark:bg-surface-dark text-onSurface-light dark:text-onSurface-dark p-4 shadow">
@@ -19,33 +20,35 @@ export default function Navbar() {
           onClick={() => (isOpen.value = !isOpen.value)}
           aria-label="Toggle menu"
         >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          {isOpen.value
+            ? <Icon name="close" size={24} />
+            : <Icon name="menu" size={24} />}
         </button>
 
-        <div class="hidden md:flex space-x-4">
-          <a href="/" class={linkClass}>Início</a>
-          <a href="/about" class={linkClass}>Sobre</a>
-          <a href="/contact" class={linkClass}>Contato</a>
+        <div class="hidden md:flex space-x-6 text-2xl">
+          <a href="/" class={linkClass}>
+            <Icon name="home" size={24} />
+          </a>
+          <a href="/about" class={linkClass}>
+            <Icon name="information-outline" size={24} />
+          </a>
+          <a href="/contact" class={linkClass}>
+            <Icon name="email-outline" size={24} />
+          </a>
         </div>
       </div>
 
       {isOpen.value && (
-        <div class="flex flex-col mt-2 space-y-2 md:hidden px-4">
-          <a href="/" class={linkClass}>Início</a>
-          <a href="/about" class={linkClass}>Sobre</a>
-          <a href="/contact" class={linkClass}>Contato</a>
+        <div class="flex flex-col mt-2 space-y-2 md:hidden px-4 text-2xl">
+          <a href="/" class={linkClass}>
+            <Icon name="home" size={24} />
+          </a>
+          <a href="/about" class={linkClass}>
+            <Icon name="information-outline" size={24} />
+          </a>
+          <a href="/contact" class={linkClass}>
+            <Icon name="email-outline" size={24} />
+          </a>
         </div>
       )}
     </nav>
