@@ -1,6 +1,5 @@
 import { ComponentChildren } from "preact";
 import Navbar from "../islands/Navbar.tsx";
-import Footer from "./Footer.tsx";
 
 interface LayoutProps {
   children: ComponentChildren;
@@ -18,7 +17,6 @@ export default function Layout({ children, fluid = false }: LayoutProps) {
       <main class={mainClass}>
         {children}
       </main>
-      <Footer />
     </>
   );
 }

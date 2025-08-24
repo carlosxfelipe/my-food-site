@@ -13,5 +13,6 @@ html {
 }
 
 a {
-  @apply no-underline text-primary-light dark:text-primary-dark hover:underline;
+  @apply no-underline text-primary-light dark:text-primary-dark;
 }
+
