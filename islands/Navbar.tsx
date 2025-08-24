@@ -10,7 +10,7 @@ export default function Navbar() {
       <div class="flex items-center justify-between px-4">
         <div class="flex items-center space-x-2">
           <img src="/logo.svg" width="32" height="32" alt="Fresh logo" />
-          <span class="font-bold text-lg">Meu Site Fresh</span>
+          <span class="font-bold text-lg">My Food</span>
         </div>
 
         <button
