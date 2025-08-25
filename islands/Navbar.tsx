@@ -38,7 +38,7 @@ export default function Navbar() {
     <nav class="w-full bg-surface-light dark:bg-surface-dark text-onSurface-light dark:text-onSurface-dark p-4 shadow relative">
       <div class="flex items-center justify-between px-4">
         <div class="flex items-center space-x-2">
-          <img src="/logo.svg" width="32" height="32" alt="Fresh logo" />
+          <Icon name="food" size={32} />
           <span class="font-bold text-lg">My Food</span>
         </div>
 
