@@ -19,15 +19,20 @@ export default function Navbar() {
   const activeLink = "bg-surfaceVariant-light dark:bg-surfaceVariant-dark " +
     "text-primary-light dark:text-primary-dark";
 
-  const LinkItem = (props: { href: string; icon: string; size?: number }) => (
-    <a
-      href={props.href}
-      class={`${baseLink} ${activePath.value === props.href ? activeLink : ""}`}
-      aria-current={activePath.value === props.href ? "page" : undefined}
-    >
-      <Icon name={props.icon} size={26} />
-    </a>
-  );
+  const LinkItem = (
+    props: { href: string; icon: string; iconOutline: string; size?: number },
+  ) => {
+    const isActive = activePath.value === props.href;
+    return (
+      <a
+        href={props.href}
+        class={`${baseLink} ${isActive ? activeLink : ""}`}
+        aria-current={isActive ? "page" : undefined}
+      >
+        <Icon name={isActive ? props.icon : props.iconOutline} size={26} />
+      </a>
+    );
+  };
 
   return (
     <nav class="w-full bg-surface-light dark:bg-surface-dark text-onSurface-light dark:text-onSurface-dark p-4 shadow relative">
@@ -39,19 +44,39 @@ export default function Navbar() {
 
         {/* links desktop */}
         <div class="hidden md:flex items-center gap-3 text-2xl">
-          <LinkItem href="/" icon="home" />
-          <LinkItem href="/orders" icon="package-variant" />
-          <LinkItem href="/favorites" icon="heart" />
-          <LinkItem href="/profile" icon="account" />
+          <LinkItem href="/" icon="home" iconOutline="home-outline" />
+          <LinkItem
+            href="/orders"
+            icon="package-variant"
+            iconOutline="package-variant-closed"
+          />
+          <LinkItem
+            href="/favorites"
+            icon="heart"
+            iconOutline="heart-outline"
+          />
+          <LinkItem
+            href="/profile"
+            icon="account"
+            iconOutline="account-outline"
+          />
         </div>
       </div>
 
       {/* bottom navigation só em mobile */}
       <div class="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur rounded-2xl px-3 py-2 shadow-lg flex items-center gap-3 text-2xl">
-        <LinkItem href="/" icon="home" />
-        <LinkItem href="/orders" icon="package-variant" />
-        <LinkItem href="/favorites" icon="heart" />
-        <LinkItem href="/profile" icon="account" />
+        <LinkItem href="/" icon="home" iconOutline="home-outline" />
+        <LinkItem
+          href="/orders"
+          icon="package-variant"
+          iconOutline="package-variant-closed"
+        />
+        <LinkItem href="/favorites" icon="heart" iconOutline="heart-outline" />
+        <LinkItem
+          href="/profile"
+          icon="account"
+          iconOutline="account-outline"
+        />
       </div>
     </nav>
   );
