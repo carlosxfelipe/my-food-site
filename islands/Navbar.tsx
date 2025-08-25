@@ -9,13 +9,32 @@ export default function Navbar() {
     activePath.value = globalThis.location?.pathname ?? "/";
   }, []);
 
-  const baseLink =
+  const linkBase =
     "no-underline flex items-center justify-center px-3 py-2 rounded-full transition-colors " +
     "text-onSurface-light dark:text-onSurface-dark " +
     "hover:bg-surfaceVariant-light/60 dark:hover:bg-surfaceVariant-dark/60 " +
     "focus:outline-none focus-visible:ring-2 focus-visible:ring-outline-light/60 dark:focus-visible:ring-outline-dark/60";
 
-  const activeLink = "bg-surfaceVariant-light dark:bg-surfaceVariant-dark";
+  const linkActive = "bg-surfaceVariant-light dark:bg-surfaceVariant-dark";
+
+  const surface =
+    "rounded-2xl border border-outline-light/30 dark:border-outline-dark/30 " +
+    "shadow-md bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md";
+
+  const topShell = "fixed top-0 inset-x-0 z-50 p-2";
+  const topCard = `mx-3 md:mx-6 ${surface}`;
+  const row =
+    "flex items-center justify-between px-4 py-3 gap-3 text-onSurface-light dark:text-onSurface-dark";
+
+  const inputClass = "flex-1 w-full max-w-md px-3 py-2 rounded-lg " +
+    "bg-inputBackground-light dark:bg-inputBackground-dark " +
+    "placeholder-placeholder-light dark:placeholder-placeholder-dark " +
+    "text-onSurface-light dark:text-onSurface-dark " +
+    "focus:outline-none focus:ring-2 focus:ring-outline-light dark:focus:ring-outline-dark";
+
+  const mobileBar =
+    "md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 px-3 py-2 text-2xl flex items-center gap-3 " +
+    surface;
 
   const LinkItem = (
     props: { href: string; icon: string; iconOutline: string; size?: number },
@@ -24,7 +43,7 @@ export default function Navbar() {
     return (
       <a
         href={props.href}
-        class={`${baseLink} ${isActive ? activeLink : ""}`}
+        class={`${linkBase} ${isActive ? linkActive : ""}`}
         aria-current={isActive ? "page" : undefined}
       >
         <Icon name={isActive ? props.icon : props.iconOutline} size={26} />
@@ -33,32 +52,22 @@ export default function Navbar() {
   };
 
   return (
-    <nav class="w-full p-2">
-      <div class="mx-3 md:mx-6 rounded-2xl shadow
-               bg-background-light/80 dark:bg-background-dark/80
-               backdrop-blur">
-        <div class="flex items-center justify-between px-4 py-3 gap-3 text-onSurface-light dark:text-onSurface-dark">
-          {/* Logo + nome + input */}
+    <nav class={topShell}>
+      <div class={topCard}>
+        <div class={row}>
           <div class="flex items-center gap-3 flex-1 min-w-0">
             <div class="flex items-center gap-2 shrink-0">
               <Icon name="food" size={32} />
-              {/* Esconde o nome no smartphone, mostra a partir de sm */}
               <span class="hidden sm:inline font-bold text-lg">My Food</span>
             </div>
-
             <input
               type="text"
               placeholder="Buscar..."
               aria-label="Buscar"
-              class="flex-1 w-full max-w-md px-3 py-2 rounded-lg
-                     bg-inputBackground-light dark:bg-inputBackground-dark
-                     placeholder-placeholder-light dark:placeholder-placeholder-dark
-                     text-onSurface-light dark:text-onSurface-dark
-                     focus:outline-none focus:ring-2 focus:ring-outline-light dark:focus:ring-outline-dark"
+              class={inputClass}
             />
           </div>
 
-          {/* links desktop */}
           <div class="hidden md:flex items-center gap-3 text-2xl">
             <LinkItem href="/" icon="home" iconOutline="home-outline" />
             <LinkItem
@@ -80,8 +89,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* bottom navigation só em mobile */}
-      <div class="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur rounded-2xl px-3 py-2 shadow-lg flex items-center gap-3 text-2xl">
+      <div class={mobileBar}>
         <LinkItem href="/" icon="home" iconOutline="home-outline" />
         <LinkItem
           href="/orders"

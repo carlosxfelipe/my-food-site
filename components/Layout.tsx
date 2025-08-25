@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, fluid = false }: LayoutProps) {
-  const mainClass = `px-4 py-12 flex-grow ${
+  const mainClass = `px-4 pt-24 pb-12 flex-grow ${
     fluid ? "w-full" : "max-w-screen-lg mx-auto"
   }`;
 
