@@ -1,13 +1,12 @@
 import { useSignal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
 import Icon from "../components/Icon.tsx";
 
-export default function Navbar() {
-  const activePath = useSignal("/");
-
-  useEffect(() => {
-    activePath.value = globalThis.location?.pathname ?? "/";
-  }, []);
+export default function Navbar({ currentPath }: { currentPath?: string }) {
+  const initialPath =
+    typeof window !== "undefined" && globalThis.location?.pathname
+      ? globalThis.location.pathname
+      : (currentPath ?? "/");
+  const activePath = useSignal(initialPath);
 
   const linkBase =
     "no-underline flex items-center justify-center px-3 py-2 rounded-full transition-colors " +
