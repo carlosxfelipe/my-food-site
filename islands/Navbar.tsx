@@ -1,6 +1,7 @@
 import { useSignal } from "@preact/signals";
 import Icon from "../components/Icon.tsx";
 import Logo from "../components/Logo.tsx";
+import { count } from "../state/cart.ts";
 
 export default function Navbar({ currentPath }: { currentPath?: string }) {
   const initialPath =
@@ -37,16 +38,30 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
     surface;
 
   const LinkItem = (
-    props: { href: string; icon: string; iconOutline: string; size?: number },
+    props: {
+      href: string;
+      icon: string;
+      iconOutline: string;
+      size?: number;
+      badge?: number;
+    },
   ) => {
     const isActive = activePath.value === props.href;
     return (
       <a
         href={props.href}
-        class={`${linkBase} ${isActive ? linkActive : ""}`}
+        class={`${linkBase} ${isActive ? linkActive : ""} relative`}
         aria-current={isActive ? "page" : undefined}
       >
-        <Icon name={isActive ? props.icon : props.iconOutline} size={26} />
+        <Icon
+          name={isActive ? props.icon : props.iconOutline}
+          size={props.size ?? 26}
+        />
+        {!!props.badge && props.badge > 0 && (
+          <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[10px] leading-none font-extrabold flex items-center justify-center bg-red-600 text-white ring-2 ring-background-light dark:ring-background-dark">
+            {props.badge}
+          </span>
+        )}
       </a>
     );
   };
@@ -74,6 +89,7 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
               href="/orders"
               icon="package-variant"
               iconOutline="package-variant-closed"
+              badge={count.value}
             />
             <LinkItem
               href="/favorites"
@@ -95,6 +111,7 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
           href="/orders"
           icon="package-variant"
           iconOutline="package-variant-closed"
+          badge={count.value}
         />
         <LinkItem href="/favorites" icon="heart" iconOutline="heart-outline" />
         <LinkItem

@@ -17,23 +17,23 @@ export default function OrdersView() {
 
   if (items.length === 0) {
     return (
-      <div class="rounded-xl border p-6 text-center
-        bg-surface-light dark:bg-surface-dark
-        border-outline-light/40 dark:border-outline-dark/40">
-        <h2 class="text-2xl font-bold text-onSurface-light dark:text-onSurface-dark">
-          Seu carrinho está vazio
-        </h2>
-        <p class="mt-2 text-onSurface-light/80 dark:text-onSurface-dark/80">
-          Adicione itens na tela “Início”.
-        </p>
-        <a
-          href="/"
-          class="inline-block mt-4 px-4 py-2 rounded font-semibold
-            bg-primary-light text-onPrimary-light
-            dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
-        >
-          Explorar produtos
-        </a>
+      <div class="min-h-[60vh] grid place-items-center">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold text-onSurface-light dark:text-onSurface-dark">
+            Seu carrinho está vazio
+          </h2>
+          <p class="mt-2 text-onSurface-light/80 dark:text-onSurface-dark/80">
+            Adicione itens na tela “Início”.
+          </p>
+          <a
+            href="/"
+            class="inline-flex items-center justify-center mt-4 px-4 py-2 rounded font-semibold
+                 bg-primary-light text-onPrimary-light
+                 dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
+          >
+            Explorar produtos
+          </a>
+        </div>
       </div>
     );
   }
@@ -80,7 +80,7 @@ export default function OrdersView() {
           <button
             type="button"
             onClick={() => clear()}
-            class="ml-2 text-sm underline text-outline-light dark:text-outline-dark hover:opacity-80"
+            class="ml-2 text-sm text-outline-light dark:text-outline-dark hover:opacity-80"
           >
             Limpar
           </button>
