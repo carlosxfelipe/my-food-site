@@ -20,8 +20,28 @@ export default function ProductGrid(
     gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
   };
 
+  const containerClass =
+    "flex flex-col gap-4 pb-[calc(env(safe-area-inset-bottom)+92px)] md:pb-0";
+
+  const subtotalBarClass =
+    "sticky bottom-[calc(env(safe-area-inset-bottom)+80px)] md:bottom-3 mx-1 md:mx-0 rounded-xl px-4 py-5 border " +
+    "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
+    "border-outline-light/40 dark:border-outline-dark/40 " +
+    "flex items-center justify-between";
+
+  const subtotalWrapperClass = "flex items-center gap-2";
+
+  const subtotalIconClass =
+    "mdi mdi-cart-outline text-xl text-onSurface-light dark:text-onSurface-dark";
+
+  const subtotalLabelClass =
+    "font-semibold text-onSurface-light dark:text-onSurface-dark";
+
+  const subtotalValueClass =
+    "text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark";
+
   return (
-    <div class="flex flex-col gap-4">
+    <div class={containerClass}>
       <div style={gridStyle}>
         {products.map((p) => {
           const q = qty.value[p.id] ?? 0;
@@ -40,22 +60,17 @@ export default function ProductGrid(
       </div>
 
       <div
-        class="sticky bottom-3 mx-1 md:mx-0 rounded-xl px-4 py-3 border
-           bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur
-           border-outline-light/40 dark:border-outline-dark/40
-           flex items-center justify-between"
+        class={subtotalBarClass}
         aria-label={`Subtotal ${
           new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
             .format(subtotal)
         }`}
       >
-        <div class="flex items-center gap-2">
-          <i class="mdi mdi-cart-outline text-xl text-onSurface-light dark:text-onSurface-dark" />
-          <span class="font-semibold text-onSurface-light dark:text-onSurface-dark">
-            Subtotal
-          </span>
+        <div class={subtotalWrapperClass}>
+          <i class={subtotalIconClass} />
+          <span class={subtotalLabelClass}>Subtotal</span>
         </div>
-        <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
+        <span class={subtotalValueClass}>
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",

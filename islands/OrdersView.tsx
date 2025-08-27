@@ -38,8 +38,30 @@ export default function OrdersView() {
     );
   }
 
+  const containerClass =
+    "flex flex-col gap-4 pb-[calc(env(safe-area-inset-bottom)+92px)] md:pb-0";
+
+  const totalBarClass =
+    "sticky bottom-[calc(env(safe-area-inset-bottom)+80px)] md:bottom-3 rounded-xl px-4 py-3 border " +
+    "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
+    "border-outline-light/40 dark:border-outline-dark/40 " +
+    "flex items-center justify-between gap-3";
+
+  const totalLabelClass =
+    "text-onSurface-light dark:text-onSurface-dark font-semibold";
+
+  const totalValueClass =
+    "text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark";
+
+  const clearButtonClass =
+    "ml-2 text-sm text-outline-light dark:text-outline-dark hover:opacity-80";
+
+  const checkoutButtonClass = "px-4 py-2 rounded-lg font-semibold " +
+    "bg-primary-light text-onPrimary-light " +
+    "dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90";
+
   return (
-    <div class="flex flex-col gap-4">
+    <div class={containerClass}>
       <div
         class="grid gap-3"
         style={{ gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}
@@ -58,20 +80,15 @@ export default function OrdersView() {
       </div>
 
       <div
-        class="sticky bottom-3 rounded-xl px-4 py-3 border
-          bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur
-          border-outline-light/40 dark:border-outline-dark/40
-          flex items-center justify-between gap-3"
+        class={totalBarClass}
         aria-label={`Total ${
           new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
             .format(subtotal)
         }`}
       >
         <div class="flex items-center gap-2">
-          <span class="text-onSurface-light dark:text-onSurface-dark font-semibold">
-            Total
-          </span>
-          <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
+          <span class={totalLabelClass}>Total</span>
+          <span class={totalValueClass}>
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
@@ -80,16 +97,14 @@ export default function OrdersView() {
           <button
             type="button"
             onClick={() => clear()}
-            class="ml-2 text-sm text-outline-light dark:text-outline-dark hover:opacity-80"
+            class={clearButtonClass}
           >
             Limpar
           </button>
         </div>
         <button
           type="button"
-          class="px-4 py-2 rounded-lg font-semibold
-            bg-primary-light text-onPrimary-light
-            dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
+          class={checkoutButtonClass}
           onClick={() => console.log("checkout")}
         >
           Finalizar pedido ({items.length})
