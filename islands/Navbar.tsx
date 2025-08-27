@@ -75,12 +75,32 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
               <Logo size={32} />
               <span class="hidden sm:inline font-bold text-lg">My Food</span>
             </div>
-            <input
-              type="text"
-              placeholder="Buscar..."
-              aria-label="Buscar"
-              class={inputClass}
-            />
+            <form
+              action="/"
+              method="GET"
+              class="flex-1 flex"
+              onSubmit={(e) => {
+                const form = e.currentTarget as HTMLFormElement;
+                const input = form.querySelector(
+                  'input[name="q"]',
+                ) as HTMLInputElement | null;
+                if (input && input.value.trim() === "") {
+                  input.disabled = true;
+                }
+              }}
+            >
+              <input
+                type="text"
+                name="q"
+                placeholder="Buscar por nome, SKU, tag…"
+                aria-label="Buscar produtos"
+                class={inputClass}
+                defaultValue={typeof window !== "undefined"
+                  ? new URLSearchParams(globalThis.location.search).get("q") ??
+                    ""
+                  : ""}
+              />
+            </form>
           </div>
 
           <div class="hidden md:flex items-center gap-3 text-2xl">
