@@ -33,7 +33,6 @@ export default function ProductCard({
       role={onClick ? "button" : undefined}
       onClick={onClick}
     >
-      {/* imagem + tags + indisponível */}
       <div class="relative aspect-[4/3]">
         <img
           src={product.image}
@@ -41,8 +40,6 @@ export default function ProductCard({
           class="w-full h-full object-cover"
           loading="lazy"
         />
-
-        {/* tags */}
         {!!product.tags?.length && (
           <div class="absolute top-2 left-2 flex gap-2 flex-wrap">
             {product.tags.map((t) => (
@@ -57,22 +54,17 @@ export default function ProductCard({
             ))}
           </div>
         )}
-
-        {/* indisponível */}
         {outOfStock && (
           <div class="absolute inset-0 grid place-items-center bg-black/45">
             <span class="text-white font-bold">Indisponível</span>
           </div>
         )}
       </div>
-
-      {/* conteúdo */}
       <div class="p-3 flex flex-col gap-1">
         <h3 class="text-sm font-extrabold leading-5 min-h-[36px]
             text-onSurface-light dark:text-onSurface-dark">
           {product.name}
         </h3>
-
         <p
           class="text-[11px] leading-4 truncate
             text-outline-light dark:text-outline-dark"
@@ -80,7 +72,6 @@ export default function ProductCard({
         >
           SKU: {product.sku}
         </p>
-
         {product.description && (
           <p
             class="text-xs leading-5 line-clamp-2 opacity-90
@@ -90,36 +81,31 @@ export default function ProductCard({
             {product.description}
           </p>
         )}
-
-        {/* preço + estoque */}
         <div class="mt-1">
           <p class="text-base font-extrabold text-onSurface-light dark:text-onSurface-dark">
             {new Intl.NumberFormat("pt-BR", {
               style: "currency",
               currency: "BRL",
-            })
-              .format(product.price)}
+            }).format(product.price)}
           </p>
           <p class="text-[10px] mt-0.5 text-outline-light dark:text-outline-dark">
             {product.stock} em estoque
           </p>
         </div>
-
-        {/* rating */}
         {!!product.rating && (
           <div
             class="flex items-center mt-1"
             aria-label={`Avaliação ${product.rating.toFixed(1)} de 5`}
           >
             {Array.from({ length: 5 }).map((_, i) => {
-              let name = "star-outline";
+              let name: "star" | "star-outline" | "star-half-full" =
+                "star-outline";
               if (i < fullStars) name = "star";
               else if (i === fullStars && hasHalf) name = "star-half-full";
               return (
                 <Icon
                   key={i}
                   name={name}
-                  family="material-community"
                   size={16}
                   class={name === "star-outline"
                     ? "text-outline-light dark:text-outline-dark mr-0.5"
@@ -134,8 +120,6 @@ export default function ProductCard({
           </div>
         )}
       </div>
-
-      {/* footer ações */}
       <div class="mt-auto p-3 bg-surfaceVariant-light/60 dark:bg-surfaceVariant-dark/60">
         {quantity === 0
           ? (
@@ -153,7 +137,7 @@ export default function ProductCard({
                 outOfStock ? "opacity-50" : "hover:opacity-90"
               }`}
             >
-              <Icon name="cart-outline" family="material-community" size={18} />
+              <Icon name="cart-outline" size={18} />
               Adicionar
             </button>
           )
@@ -165,12 +149,12 @@ export default function ProductCard({
                   e.stopPropagation();
                   onDecrease();
                 }}
-                class="w-10 h-9 rounded-lg border
+                class="w-10 h-9 rounded-lg border flex items-center justify-center
                 border-outline-light/60 dark:border-outline-dark/60
                 text-onSurface-light dark:text-onSurface-dark"
                 aria-label="Diminuir quantidade"
               >
-                <Icon name="minus" family="material-community" size={18} />
+                <Icon name="minus" size={18} />
               </button>
               <span class="min-w-6 text-center font-extrabold
               text-onSurface-light dark:text-onSurface-dark">
@@ -183,7 +167,7 @@ export default function ProductCard({
                   onIncrease();
                 }}
                 disabled={quantity >= product.stock}
-                class={`w-10 h-9 rounded-lg border
+                class={`w-10 h-9 rounded-lg border flex items-center justify-center
                 border-outline-light/60 dark:border-outline-dark/60
                 text-onSurface-light dark:text-onSurface-dark
                 ${
@@ -191,7 +175,7 @@ export default function ProductCard({
                 }`}
                 aria-label="Aumentar quantidade"
               >
-                <Icon name="plus" family="material-community" size={18} />
+                <Icon name="plus" size={18} />
               </button>
             </div>
           )}

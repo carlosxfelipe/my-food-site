@@ -33,10 +33,7 @@
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "types": [
-      "./types/custom-elements.d.ts"
-    ]
+    "jsxImportSource": "preact"
   },
   "nodeModulesDir": "auto"
 }

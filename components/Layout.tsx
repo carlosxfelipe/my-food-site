@@ -20,6 +20,7 @@ export default function Layout(
       <main class={mainClass}>
         {children}
       </main>
+      <div class="mt-[100px]" />
     </>
   );
 }
