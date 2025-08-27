@@ -18,7 +18,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: "Blend 100% arábica com notas de chocolate e caramelo.",
     price: 34.9,
     image:
-      "https://images.unsplash.com/photo-1518057111178-44a106bad636?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518057111178-44a106bad636?q=80&w=400&auto=format&fit=crop",
     rating: 4.7,
     stock: 42,
     tags: ["novo", "premium"],
@@ -29,7 +29,8 @@ export const MOCK_PRODUCTS: Product[] = [
     sku: "CHA-MATCHA-100",
     description: "Matcha cerimonial moído a pedra, ideal para lattes.",
     price: 59.9,
-    image: "https://images.pexels.com/photos/734983/pexels-photo-734983.jpeg",
+    image:
+      "https://images.pexels.com/photos/734983/pexels-photo-734983.jpeg?auto=compress&cs=tinysrgb&w=400",
     rating: 4.5,
     stock: 18,
     tags: ["orgânico"],
@@ -40,7 +41,8 @@ export const MOCK_PRODUCTS: Product[] = [
     sku: "BIS-AMT-200",
     description: "Clássico amanteigado com toque de baunilha.",
     price: 14.5,
-    image: "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg",
+    image:
+      "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=400",
     rating: 4.0,
     stock: 0,
     tags: ["indisponível"],
@@ -52,7 +54,8 @@ export const MOCK_PRODUCTS: Product[] = [
     description:
       "Massa de chocolate fofinha com cobertura cremosa de chocolate e caramelo.",
     price: 9.9,
-    image: "https://images.pexels.com/photos/635409/pexels-photo-635409.jpeg",
+    image:
+      "https://images.pexels.com/photos/635409/pexels-photo-635409.jpeg?auto=compress&cs=tinysrgb&w=400",
     rating: 4.8,
     stock: 32,
     tags: ["doce", "confeitaria", "novo"],
@@ -64,7 +67,8 @@ export const MOCK_PRODUCTS: Product[] = [
     description:
       "Flores de hibisco secas, sabor levemente ácido e refrescante.",
     price: 19.9,
-    image: "https://images.pexels.com/photos/5946686/pexels-photo-5946686.jpeg",
+    image:
+      "https://images.pexels.com/photos/5946686/pexels-photo-5946686.jpeg?auto=compress&cs=tinysrgb&w=400",
     rating: 4.3,
     stock: 12,
     tags: ["chá", "natural"],
@@ -76,7 +80,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: "Caneca branca clássica de porcelana, ideal para café ou chá.",
     price: 24.9,
     image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400&auto=format&fit=crop",
     rating: 4.1,
     stock: 64,
     tags: ["acessório", "utilitário"],
@@ -89,7 +93,7 @@ export const MOCK_PRODUCTS: Product[] = [
       "Brownie artesanal de chocolate meio amargo com pedaços de nozes.",
     price: 8.5,
     image:
-      "https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg",
+      "https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&w=400",
     rating: 4.9,
     stock: 20,
     tags: ["doce", "confeitaria", "artesanal"],
