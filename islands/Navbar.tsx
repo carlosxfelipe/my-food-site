@@ -1,5 +1,5 @@
 import { useSignal } from "@preact/signals";
-import Icon from "../components/Icon.tsx";
+import Icon, { IconName } from "../components/Icon.tsx";
 import Logo from "../components/Logo.tsx";
 import { count } from "../state/cart.ts";
 
@@ -40,8 +40,8 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
   const LinkItem = (
     props: {
       href: string;
-      icon: string;
-      iconOutline: string;
+      icon: IconName;
+      iconOutline: IconName;
       size?: number;
       badge?: number;
     },

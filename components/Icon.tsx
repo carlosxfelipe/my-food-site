@@ -48,8 +48,10 @@ const MAP = {
   "chevron-right": mdiChevronRight,
 } as const;
 
+export type IconName = keyof typeof MAP;
+
 type Props = {
-  name: keyof typeof MAP;
+  name: IconName;
   size?: number | string;
   class?: string;
   ariaLabel?: string;
