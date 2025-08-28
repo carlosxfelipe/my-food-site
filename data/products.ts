@@ -98,4 +98,81 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 20,
     tags: ["doce", "confeitaria", "artesanal"],
   },
+  {
+    id: "p-111",
+    name: "Granola Artesanal 300g",
+    sku: "GRA-ART-300",
+    description: "Granola crocante com aveia, castanhas, mel e frutas secas.",
+    price: 22.9,
+    image:
+      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.6,
+    stock: 25,
+    tags: ["natural", "saudável"],
+  },
+  {
+    id: "p-113",
+    name: "Chá Preto Earl Grey 75g",
+    sku: "CHA-EG-75",
+    description:
+      "Clássico chá preto aromatizado com óleo natural de bergamota.",
+    price: 27.5,
+    image:
+      "https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.6,
+    stock: 15,
+    tags: ["chá", "clássico", "aromático"],
+  },
+  {
+    id: "p-116",
+    name: "Latte Macchiato 300ml",
+    sku: "LAT-MAC-300",
+    description:
+      "Café espresso suave combinado com leite vaporizado e uma fina camada de espuma.",
+    price: 14.9,
+    image:
+      "https://images.pexels.com/photos/302896/pexels-photo-302896.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.6,
+    stock: 28,
+    tags: ["bebida", "café", "clássico"],
+  },
+
+  {
+    id: "p-117",
+    name: "Mel Orgânico 300g",
+    sku: "MEL-ORG-300",
+    description: "Mel puro e orgânico, ideal para adoçar bebidas e receitas.",
+    price: 27.9,
+    image:
+      "https://images.pexels.com/photos/2965571/pexels-photo-2965571.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.8,
+    stock: 19,
+    tags: ["natural", "orgânico", "saudável"],
+  },
+  {
+    id: "p-124",
+    name: "Torta de Limão 1kg",
+    sku: "TOR-LIM-1K",
+    description:
+      "Torta de limão com base crocante de biscoito, recheio cremoso e cobertura de merengue maçaricado.",
+    price: 74.9,
+    image:
+      "https://images.pexels.com/photos/3026801/pexels-photo-3026801.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.8,
+    stock: 8,
+    tags: ["torta", "doce", "confeitaria"],
+  },
+  {
+    id: "p-128",
+    name: "Torta Holandesa 900g",
+    sku: "TOR-HOL-900",
+    description:
+      "Torta gelada com base de biscoito, creme especial e cobertura de ganache de chocolate.",
+    price: 79.9,
+    image:
+      "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=400",
+    rating: 4.8,
+    stock: 9,
+    tags: ["torta", "bolo", "gelada"],
+  },
 ];
