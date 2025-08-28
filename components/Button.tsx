@@ -1,15 +1,32 @@
 import { JSX } from "preact";
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import Icon, { type IconName } from "./Icon.tsx";
 
-export function Button(props: JSX.HTMLAttributes<HTMLButtonElement>) {
+type ButtonProps = JSX.HTMLAttributes<HTMLButtonElement> & {
+  text: string;
+  icon?: IconName;
+  fullWidth?: boolean;
+};
+
+export function Button({
+  text,
+  icon,
+  fullWidth = false,
+  class: className = "",
+  ...props
+}: ButtonProps) {
   return (
     <button
       {...props}
-      type={props.type ?? "button"}
-      disabled={!IS_BROWSER || props.disabled}
-      class={`px-4 py-2 rounded font-medium transition-colors
-        bg-primary-light text-onPrimary-light hover:opacity-90
-        dark:bg-primary-dark dark:text-onPrimary-dark dark:hover:opacity-90`}
-    />
+      class={`${
+        fullWidth ? "w-full" : ""
+      } h-10 rounded-lg font-bold inline-flex items-center justify-center gap-2
+        bg-primary-light text-onPrimary-light
+        dark:bg-primary-dark dark:text-onPrimary-dark
+        transition-opacity disabled:opacity-50 hover:enabled:opacity-90
+        ${className}`}
+    >
+      {icon && <Icon name={icon} size={18} />}
+      {text}
+    </button>
   );
 }

@@ -93,11 +93,11 @@ export default function ProfileView() {
             </p>
           </div>
           <Button
+            text="Editar"
             onClick={() => globalThis.alert?.("Editar perfil")}
-            class="px-3 py-2"
-          >
-            Editar
-          </Button>
+            class="px-3"
+            fullWidth={false}
+          />
         </div>
       </div>
 

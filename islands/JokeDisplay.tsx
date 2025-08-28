@@ -17,9 +17,12 @@ export default function JokeDisplay() {
   return (
     <div class="my-6">
       <p class="italic mb-2">"{joke}"</p>
-      <Button onClick={fetchJoke} class="mt-2">
-        Nova piada
-      </Button>
+      <Button
+        text="Nova piada"
+        onClick={fetchJoke}
+        class="px-3"
+        fullWidth={false}
+      />
     </div>
   );
 }
