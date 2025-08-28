@@ -35,7 +35,7 @@ export default function ProductGrid(
 
   return (
     <div class={containerClass}>
-      <div style={gridStyle}>
+      <div style={gridStyle} class="grid justify-items-center">
         {products.map((p) => {
           const q = qty.value[p.id] ?? 0;
           return (
@@ -46,7 +46,6 @@ export default function ProductGrid(
               onAdd={() => inc(p.id, p.stock)}
               onIncrease={() => inc(p.id, p.stock)}
               onDecrease={() => dec(p.id)}
-              class="h-full"
             />
           );
         })}

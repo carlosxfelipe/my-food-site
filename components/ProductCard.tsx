@@ -26,7 +26,7 @@ export default function ProductCard({
 
   return (
     <div
-      class={`group rounded-xl overflow-hidden border transition
+      class={`group w-full max-w-[380px] rounded-xl overflow-hidden border transition
         bg-surface-light dark:bg-surface-dark
         border-outline-light/40 dark:border-outline-dark/40
         ${cls}`}

@@ -63,7 +63,7 @@ export default function OrdersView() {
   return (
     <div class={containerClass}>
       <div
-        class="grid gap-3"
+        class="grid gap-3 justify-items-center"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
       >
         {items.map((item) => (

@@ -1,14 +1,11 @@
 import Layout from "../components/Layout.tsx";
 import { type PageProps } from "$fresh/server.ts";
 
-export default function Favorites(props: PageProps) {
+export default function Orders(props: PageProps) {
   return (
-    <Layout currentPath={props.url.pathname}>
-      <div class="flex flex-col px-4 text-left">
-        <h1 class="text-4xl font-bold mb-4">Favoritos</h1>
-        <p class="mb-6">
-          Esta é a página de Favoritos.
-        </p>
+    <Layout fluid currentPath={props.url.pathname}>
+      <div class="px-4">
+        <h1 class="text-4xl font-bold mb-3">Favoritos</h1>
       </div>
     </Layout>
   );
