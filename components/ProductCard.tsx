@@ -1,5 +1,6 @@
 import Icon from "./Icon.tsx";
 import type { Product } from "../data/products.ts";
+import { formatBRL } from "../utils/currency.ts";
 
 type Props = {
   product: Product;
@@ -83,10 +84,7 @@ export default function ProductCard({
         )}
         <div class="mt-1">
           <p class="text-base font-extrabold text-onSurface-light dark:text-onSurface-dark">
-            {new Intl.NumberFormat("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }).format(product.price)}
+            {formatBRL(product.price)}
           </p>
           <p class="text-[10px] mt-0.5 text-outline-light dark:text-outline-dark">
             {product.stock} em estoque

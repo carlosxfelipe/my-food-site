@@ -3,6 +3,7 @@ import type { Product } from "../data/products.ts";
 import { dec, inc, qty } from "../state/cart.ts";
 import { useMemo } from "preact/hooks";
 import type { JSX } from "preact";
+import { formatBRL } from "../utils/currency.ts";
 
 type Props = {
   products: Product[];
@@ -15,7 +16,10 @@ export default function ProductGrid(
 ) {
   const subtotal = useMemo(() => {
     const map = qty.value;
-    return products.reduce((acc, p) => acc + p.price * (map[p.id] ?? 0), 0);
+    return products.reduce(
+      (acc, p) => acc + Number(p.price) * Number(map[p.id] ?? 0),
+      0,
+    );
   }, [products, qty.value]);
 
   const gridStyle: JSX.CSSProperties = {
@@ -53,10 +57,7 @@ export default function ProductGrid(
 
       <div
         class={`hidden md:flex ${subtotalBarClass}`}
-        aria-label={`Subtotal ${
-          new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
-            .format(subtotal)
-        }`}
+        aria-label={`Subtotal ${formatBRL(subtotal)}`}
       >
         <div class="flex items-center gap-2">
           <i class="mdi mdi-cart-outline text-xl text-onSurface-light dark:text-onSurface-dark" />
@@ -65,10 +66,7 @@ export default function ProductGrid(
           </span>
         </div>
         <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
-          {new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(subtotal)}
+          {formatBRL(subtotal)}
         </span>
       </div>
 
@@ -81,10 +79,7 @@ export default function ProductGrid(
             Subtotal
           </span>
           <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
-            {new Intl.NumberFormat("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }).format(subtotal)}
+            {formatBRL(subtotal)}
           </span>
         </div>
 
