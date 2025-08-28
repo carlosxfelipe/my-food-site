@@ -101,6 +101,9 @@ export default {
           dark: "#FFCF33",
         },
       },
+      fontFamily: {
+        sans: ["Roboto", "sans-serif"],
+      },
     },
   },
 } satisfies Config;
