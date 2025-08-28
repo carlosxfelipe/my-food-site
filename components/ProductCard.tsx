@@ -1,4 +1,6 @@
 import Icon from "./Icon.tsx";
+import { Button } from "./Button.tsx";
+import IconButton from "./IconButton.tsx";
 import type { Product } from "../data/products.ts";
 import { formatBRL } from "../utils/currency.ts";
 
@@ -121,60 +123,43 @@ export default function ProductCard({
       <div class="mt-auto p-3 bg-surfaceVariant-light/60 dark:bg-surfaceVariant-dark/60">
         {quantity === 0
           ? (
-            <button
+            <Button
               type="button"
+              text="Adicionar"
+              icon="cart-outline"
               onClick={(e) => {
                 e.stopPropagation();
                 onAdd();
               }}
               disabled={outOfStock}
-              class={`w-full h-10 rounded-lg font-bold inline-flex items-center justify-center gap-2
-              bg-primary-light text-onPrimary-light
-              dark:bg-primary-dark dark:text-onPrimary-dark
-              transition-opacity ${
-                outOfStock ? "opacity-50" : "hover:opacity-90"
-              }`}
-            >
-              <Icon name="cart-outline" size={18} />
-              Adicionar
-            </button>
+              fullWidth
+            />
           )
           : (
             <div class="flex items-center justify-between">
-              <button
+              <IconButton
                 type="button"
+                icon="minus"
+                ariaLabel="Diminuir quantidade"
                 onClick={(e) => {
                   e.stopPropagation();
                   onDecrease();
                 }}
-                class="w-10 h-9 rounded-lg border flex items-center justify-center
-                border-outline-light/60 dark:border-outline-dark/60
-                text-onSurface-light dark:text-onSurface-dark"
-                aria-label="Diminuir quantidade"
-              >
-                <Icon name="minus" size={18} />
-              </button>
+              />
               <span class="min-w-6 text-center font-extrabold
               text-onSurface-light dark:text-onSurface-dark">
                 {quantity}
               </span>
-              <button
+              <IconButton
                 type="button"
+                icon="plus"
+                ariaLabel="Aumentar quantidade"
                 onClick={(e) => {
                   e.stopPropagation();
                   onIncrease();
                 }}
                 disabled={quantity >= product.stock}
-                class={`w-10 h-9 rounded-lg border flex items-center justify-center
-                border-outline-light/60 dark:border-outline-dark/60
-                text-onSurface-light dark:text-onSurface-dark
-                ${
-                  quantity >= product.stock ? "opacity-50" : "hover:opacity-90"
-                }`}
-                aria-label="Aumentar quantidade"
-              >
-                <Icon name="plus" size={18} />
-              </button>
+              />
             </div>
           )}
       </div>
