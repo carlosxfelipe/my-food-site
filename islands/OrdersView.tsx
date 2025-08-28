@@ -41,8 +41,7 @@ export default function OrdersView() {
   const containerClass =
     "flex flex-col gap-4 pb-[calc(env(safe-area-inset-bottom)+92px)] md:pb-0";
 
-  const totalBarClass =
-    "sticky bottom-[calc(env(safe-area-inset-bottom)+80px)] md:bottom-3 rounded-xl px-4 py-3 border " +
+  const totalBarClass = "sticky md:bottom-3 rounded-xl px-4 py-3 border " +
     "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
     "border-outline-light/40 dark:border-outline-dark/40 " +
     "flex items-center justify-between gap-3";
@@ -74,13 +73,12 @@ export default function OrdersView() {
             onAdd={() => inc(item.id, item.stock)}
             onIncrease={() => inc(item.id, item.stock)}
             onDecrease={() => dec(item.id)}
-            class="h-full"
           />
         ))}
       </div>
 
       <div
-        class={totalBarClass}
+        class={`hidden md:flex ${totalBarClass}`}
         aria-label={`Total ${
           new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
             .format(subtotal)
@@ -105,6 +103,37 @@ export default function OrdersView() {
         <button
           type="button"
           class={checkoutButtonClass}
+          onClick={() => console.log("checkout")}
+        >
+          Finalizar pedido ({items.length})
+        </button>
+      </div>
+
+      <div class="md:hidden mx-2 mt-4 space-y-3" aria-label="Resumo do pedido">
+        <div class="flex items-center justify-between rounded-xl px-4 py-3 border bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur border-outline-light/40 dark:border-outline-dark/40">
+          <div class="flex items-center gap-3">
+            <span class="font-semibold text-onSurface-light dark:text-onSurface-dark">
+              Subtotal
+            </span>
+            <button
+              type="button"
+              onClick={() => clear()}
+              class="text-sm text-outline-light dark:text-outline-dark hover:opacity-80"
+            >
+              Limpar
+            </button>
+          </div>
+          <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(subtotal)}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          class="w-full px-4 py-3 rounded-lg font-semibold bg-primary-light text-onPrimary-light dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
           onClick={() => console.log("checkout")}
         >
           Finalizar pedido ({items.length})

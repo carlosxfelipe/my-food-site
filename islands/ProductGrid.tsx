@@ -52,7 +52,7 @@ export default function ProductGrid(
       </div>
 
       <div
-        class={subtotalBarClass}
+        class={`hidden md:flex ${subtotalBarClass}`}
         aria-label={`Subtotal ${
           new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
             .format(subtotal)
@@ -70,6 +70,30 @@ export default function ProductGrid(
             currency: "BRL",
           }).format(subtotal)}
         </span>
+      </div>
+
+      <div
+        class="md:hidden mx-2 mt-4 space-y-3"
+        aria-label="Resumo do carrinho"
+      >
+        <div class="flex items-center justify-between rounded-xl px-4 py-3 border bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur border-outline-light/40 dark:border-outline-dark/40">
+          <span class="font-semibold text-onSurface-light dark:text-onSurface-dark">
+            Subtotal
+          </span>
+          <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(subtotal)}
+          </span>
+        </div>
+
+        <a
+          href="/orders"
+          class="w-full block text-center px-4 py-3 rounded-lg font-semibold bg-primary-light text-onPrimary-light dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
+        >
+          Ver carrinho
+        </a>
       </div>
     </div>
   );
