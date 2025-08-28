@@ -13,6 +13,7 @@ import {
   mdiHome,
   mdiHomeOutline,
   mdiLockOutline,
+  mdiLogout,
   mdiMapMarkerOutline,
   mdiMinus,
   mdiPackageVariant,
@@ -46,6 +47,7 @@ const MAP = {
   "help-circle-outline": mdiHelpCircleOutline,
   "lock-outline": mdiLockOutline,
   "chevron-right": mdiChevronRight,
+  logout: mdiLogout,
 } as const;
 
 export type IconName = keyof typeof MAP;

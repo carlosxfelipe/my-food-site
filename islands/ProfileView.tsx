@@ -1,7 +1,5 @@
 import Icon from "../components/Icon.tsx";
 import { Button } from "../components/Button.tsx";
-import { count, qty } from "../state/cart.ts";
-import { MOCK_PRODUCTS } from "../data/products.ts";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -68,21 +66,14 @@ export default function ProfileView() {
   };
 
   const favoritesCount = 7;
-  const itemsInCart = count.value;
-  const cartLabel = itemsInCart === 0
-    ? "Carrinho vazio"
-    : `${itemsInCart} item(ns) no carrinho`;
-  const subtotal = MOCK_PRODUCTS.reduce(
-    (acc, p) => acc + p.price * (qty.value[p.id] ?? 0),
-    0,
-  );
+
   const headerCardClass =
     "rounded-xl border border-outline-light/40 dark:border-outline-dark/40 p-3 bg-surface-light dark:bg-surface-dark";
   const cardClass =
     "rounded-xl border border-outline-light/40 dark:border-outline-dark/40 p-2 bg-surface-light dark:bg-surface-dark";
 
   return (
-    <div class="relative">
+    <div class="relative flex flex-col gap-3">
       <div class={headerCardClass}>
         <div class="flex items-center gap-3">
           <div class="w-16 h-16 rounded-full overflow-hidden shrink-0">
@@ -110,7 +101,7 @@ export default function ProfileView() {
         </div>
       </div>
 
-      <div class={`${cardClass} mt-3`}>
+      <div class={cardClass}>
         <div class="flex items-center justify-between py-1">
           <Stat label="Pedidos" value="12" />
           <Divider />
@@ -120,7 +111,7 @@ export default function ProfileView() {
         </div>
       </div>
 
-      <div class={`${cardClass} mt-3`}>
+      <div class={cardClass}>
         <SectionTitle title="Conta" />
         <ActionRow
           icon="map-marker-outline"
@@ -148,42 +139,11 @@ export default function ProfileView() {
           label="Privacidade"
           onClick={() => alert("Privacidade")}
         />
-        <div class="pt-2">
-          <Button
-            onClick={() => alert("Logout: você saiu da conta.")}
-            class="mt-3"
-          >
-            Sair da conta
-          </Button>
-        </div>
-      </div>
-
-      <div class="h-[120px] md:h-0" />
-
-      <div
-        class="fixed md:sticky bottom-[calc(env(safe-area-inset-bottom)+72px)] md:bottom-3 left-0 right-0 md:left-auto md:right-auto mx-3 md:mx-0 rounded-xl px-4 py-3 border bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur border-outline-light/40 dark:border-outline-dark/40 flex items-center justify-between gap-3"
-        aria-label={cartLabel}
-      >
-        <div class="flex items-center gap-2">
-          <Icon name="cart-outline" size={20} />
-          <span class="text-onSurface-light dark:text-onSurface-dark text-sm font-semibold">
-            {cartLabel}
-          </span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-onSurface-light dark:text-onSurface-dark font-extrabold">
-            {new Intl.NumberFormat("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            }).format(subtotal)}
-          </span>
-          <a
-            href="/orders"
-            class="px-4 py-2 rounded-lg font-semibold bg-primary-light text-onPrimary-light dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
-          >
-            Ir para pedidos
-          </a>
-        </div>
+        <ActionRow
+          icon="logout"
+          label="Sair da conta"
+          onClick={() => alert("Logout: você saiu da conta.")}
+        />
       </div>
     </div>
   );
