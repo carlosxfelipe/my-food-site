@@ -4,9 +4,11 @@ import OrdersView from "../islands/OrdersView.tsx";
 
 export default function Orders(props: PageProps) {
   return (
-    <Layout currentPath={props.url.pathname}>
-      <div class="mb-[30px]" />
-      <OrdersView />
+    <Layout fluid currentPath={props.url.pathname}>
+      <div class="px-4">
+        <h1 class="text-4xl font-bold mb-3">Pedidos</h1>
+        <OrdersView />
+      </div>
     </Layout>
   );
 }

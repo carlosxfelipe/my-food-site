@@ -1,24 +1,18 @@
 import ProductCard from "../components/ProductCard.tsx";
 import type { Product } from "../data/products.ts";
 import { dec, inc, qty } from "../state/cart.ts";
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 import type { JSX } from "preact";
 
-type Props = { products: Product[]; columns?: number; gap?: number };
+type Props = {
+  products: Product[];
+  minColWidth?: number;
+  gap?: number;
+};
 
 export default function ProductGrid(
-  { products, columns = 2, gap = 12 }: Props,
+  { products, minColWidth = 180, gap = 12 }: Props,
 ) {
-  const [cols, setCols] = useState(columns);
-
-  useEffect(() => {
-    const mql = matchMedia("(min-width: 768px)");
-    const apply = () => setCols(mql.matches ? 3 : columns);
-    apply();
-    mql.addEventListener("change", apply);
-    return () => mql.removeEventListener("change", apply);
-  }, [columns]);
-
   const subtotal = useMemo(() => {
     const map = qty.value;
     return products.reduce((acc, p) => acc + p.price * (map[p.id] ?? 0), 0);
@@ -27,7 +21,7 @@ export default function ProductGrid(
   const gridStyle: JSX.CSSProperties = {
     display: "grid",
     gap: `${gap}px`,
-    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+    gridTemplateColumns: `repeat(auto-fit, minmax(${minColWidth}px, 1fr))`,
   };
 
   const containerClass =
@@ -38,17 +32,6 @@ export default function ProductGrid(
     "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
     "border-outline-light/40 dark:border-outline-dark/40 " +
     "flex items-center justify-between";
-
-  const subtotalWrapperClass = "flex items-center gap-2";
-
-  const subtotalIconClass =
-    "mdi mdi-cart-outline text-xl text-onSurface-light dark:text-onSurface-dark";
-
-  const subtotalLabelClass =
-    "font-semibold text-onSurface-light dark:text-onSurface-dark";
-
-  const subtotalValueClass =
-    "text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark";
 
   return (
     <div class={containerClass}>
@@ -76,11 +59,13 @@ export default function ProductGrid(
             .format(subtotal)
         }`}
       >
-        <div class={subtotalWrapperClass}>
-          <i class={subtotalIconClass} />
-          <span class={subtotalLabelClass}>Subtotal</span>
+        <div class="flex items-center gap-2">
+          <i class="mdi mdi-cart-outline text-xl text-onSurface-light dark:text-onSurface-dark" />
+          <span class="font-semibold text-onSurface-light dark:text-onSurface-dark">
+            Subtotal
+          </span>
         </div>
-        <span class={subtotalValueClass}>
+        <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",

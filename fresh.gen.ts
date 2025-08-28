@@ -15,6 +15,7 @@ import * as $JokeDisplay from "./islands/JokeDisplay.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
 import * as $OrdersView from "./islands/OrdersView.tsx";
 import * as $ProductGrid from "./islands/ProductGrid.tsx";
+import * as $ProfileView from "./islands/ProfileView.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -34,6 +35,7 @@ const manifest = {
     "./islands/Navbar.tsx": $Navbar,
     "./islands/OrdersView.tsx": $OrdersView,
     "./islands/ProductGrid.tsx": $ProductGrid,
+    "./islands/ProfileView.tsx": $ProfileView,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

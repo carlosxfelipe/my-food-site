@@ -64,7 +64,7 @@ export default function OrdersView() {
     <div class={containerClass}>
       <div
         class="grid gap-3"
-        style={{ gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
       >
         {items.map((item) => (
           <ProductCard
