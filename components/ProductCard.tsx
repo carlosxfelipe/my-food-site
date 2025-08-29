@@ -12,6 +12,8 @@ type Props = {
   onDecrease: () => void;
   onClick?: () => void;
   class?: string;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 };
 
 export default function ProductCard({
@@ -22,6 +24,8 @@ export default function ProductCard({
   onDecrease,
   onClick,
   class: cls = "",
+  isFavorite,
+  onToggleFavorite,
 }: Props) {
   const outOfStock = product.stock === 0;
   const fullStars = Math.floor(product.rating ?? 0);
@@ -56,6 +60,28 @@ export default function ProductCard({
               </span>
             ))}
           </div>
+        )}
+        {typeof isFavorite !== "undefined" && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite?.();
+            }}
+            aria-label={isFavorite
+              ? "Remover dos favoritos"
+              : "Adicionar aos favoritos"}
+            class="absolute bottom-2 right-2 z-10
+           w-9 h-9 rounded-full flex items-center justify-center
+           bg-primary-light dark:bg-primary-dark
+           shadow-md hover:opacity-90 transition"
+          >
+            <Icon
+              name={isFavorite ? "heart" : "heart-outline"}
+              size={18}
+              class="text-onPrimary-light dark:text-onPrimary-dark"
+            />
+          </button>
         )}
         {outOfStock && (
           <div class="absolute inset-0 grid place-items-center bg-black/45">

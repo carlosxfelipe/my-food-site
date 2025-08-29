@@ -4,6 +4,7 @@ import { dec, inc, qty } from "../state/cart.ts";
 import { useMemo } from "preact/hooks";
 import type { JSX } from "preact";
 import { formatBRL } from "../utils/currency.ts";
+import { has as hasFav, toggle as toggleFav } from "../state/favorites.ts";
 
 type Props = {
   products: Product[];
@@ -42,6 +43,7 @@ export default function ProductGrid(
       <div style={gridStyle} class="grid justify-items-center">
         {products.map((p) => {
           const q = qty.value[p.id] ?? 0;
+          const isFavorite = hasFav(p.id);
           return (
             <ProductCard
               key={p.id}
@@ -50,6 +52,8 @@ export default function ProductGrid(
               onAdd={() => inc(p.id, p.stock)}
               onIncrease={() => inc(p.id, p.stock)}
               onDecrease={() => dec(p.id)}
+              isFavorite={isFavorite}
+              onToggleFavorite={() => toggleFav(p.id)}
             />
           );
         })}
