@@ -100,6 +100,10 @@ export default {
           light: "#FFD700",
           dark: "#FFCF33",
         },
+        favorite: {
+          light: "#EF4444",
+          dark: "#F87171",
+        },
       },
       fontFamily: {
         sans: ["Roboto", "sans-serif"],

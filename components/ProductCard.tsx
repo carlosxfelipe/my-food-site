@@ -48,13 +48,14 @@ export default function ProductCard({
           loading="lazy"
         />
         {!!product.tags?.length && (
-          <div class="absolute top-2 left-2 flex gap-2 flex-wrap">
+          <div class="absolute top-2 left-2 right-12 flex gap-2 flex-wrap">
             {product.tags.map((t) => (
               <span
                 key={t}
                 class="px-2 py-1 rounded-full text-xs font-semibold
-                  bg-primary-light dark:bg-primary-dark
-                  text-onPrimary-light dark:text-onPrimary-dark"
+                       bg-white/30 dark:bg-black/30 backdrop-blur-md
+                       text-onSurface-light dark:text-onSurface-dark
+                       shadow-sm"
               >
                 {t}
               </span>
@@ -71,15 +72,17 @@ export default function ProductCard({
             aria-label={isFavorite
               ? "Remover dos favoritos"
               : "Adicionar aos favoritos"}
-            class="absolute bottom-2 right-2 z-10
-           w-9 h-9 rounded-full flex items-center justify-center
-           bg-primary-light dark:bg-primary-dark
-           shadow-md hover:opacity-90 transition"
+            class="absolute bottom-2 right-2 z-10 w-9 h-9 rounded-full
+                   flex items-center justify-center
+                   bg-white/30 dark:bg-black/30 backdrop-blur-md
+                   shadow-md hover:opacity-90 transition"
           >
             <Icon
               name={isFavorite ? "heart" : "heart-outline"}
               size={18}
-              class="text-onPrimary-light dark:text-onPrimary-dark"
+              class={isFavorite
+                ? "text-favorite-light dark:text-favorite-dark"
+                : "text-onSurface-light dark:text-onSurface-dark"}
             />
           </button>
         )}
