@@ -18,7 +18,7 @@ export function Button({
     <button
       {...props}
       class={`${
-        fullWidth ? "w-full" : ""
+        fullWidth ? "w-full" : "px-3"
       } h-10 rounded-lg font-bold inline-flex items-center justify-center gap-2
         bg-primary-light text-onPrimary-light
         dark:bg-primary-dark dark:text-onPrimary-dark

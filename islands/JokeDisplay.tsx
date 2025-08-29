@@ -20,7 +20,6 @@ export default function JokeDisplay() {
       <Button
         text="Nova piada"
         onClick={fetchJoke}
-        class="px-3"
         fullWidth={false}
       />
     </div>

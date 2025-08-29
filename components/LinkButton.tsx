@@ -19,11 +19,11 @@ export function LinkButton({
     <a
       href={href}
       class={`${
-        fullWidth ? "w-full" : ""
-      } h-10 px-3 rounded-lg font-bold inline-flex items-center justify-center gap-2
+        fullWidth ? "w-full" : "px-3"
+      } h-10 rounded-lg font-bold inline-flex items-center justify-center gap-2
         bg-primary-light text-onPrimary-light
         dark:bg-primary-dark dark:text-onPrimary-dark
-        transition-opacity hover:opacity-90
+        transition-opacity disabled:opacity-50 hover:enabled:opacity-90
         ${className}`}
     >
       {icon && <Icon name={icon} size={18} />}
