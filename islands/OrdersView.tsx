@@ -2,6 +2,7 @@ import { MOCK_PRODUCTS, type Product } from "../data/products.ts";
 import ProductCard from "../components/ProductCard.tsx";
 import { clear, dec, inc, qty } from "../state/cart.ts";
 import { formatBRL } from "../utils/currency.ts";
+import { LinkButton } from "../components/LinkButton.tsx";
 
 type CartItem = Product & { quantity: number };
 
@@ -29,14 +30,7 @@ export default function OrdersView() {
           <p class="mt-2 text-onSurface-light/80 dark:text-onSurface-dark/80">
             Adicione itens na tela “Início”.
           </p>
-          <a
-            href="/"
-            class="inline-flex items-center justify-center mt-4 px-4 py-2 rounded font-semibold
-                 bg-primary-light text-onPrimary-light
-                 dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
-          >
-            Explorar produtos
-          </a>
+          <LinkButton href="/" text="Explorar produtos" class="mt-4" />
         </div>
       </div>
     );
