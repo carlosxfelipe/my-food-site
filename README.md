@@ -1,7 +1,10 @@
-# Projeto Fresh
+# My Food
 
-Seu novo projeto Fresh está pronto para uso. Você pode seguir o guia "Primeiros
-Passos" do Fresh aqui: https://fresh.deno.dev/docs/getting-started
+**My Food** é uma aplicação construída com [Fresh](https://fresh.deno.dev), um
+framework moderno para Deno que combina desempenho, simplicidade e renderização
+server-side reativa. O objetivo do projeto é servir como base para um app de
+delivery/restaurante, com páginas, navegação e estados já preparados para
+evoluir.
 
 ### Uso
 
@@ -15,11 +18,3 @@ deno task start
 ```
 
 Isso irá observar o diretório do projeto e reiniciar conforme necessário.
-
-### Recursos incluídos no template
-
-Este template já vem com algumas funcionalidades úteis pré-configuradas:
-
-- Suporte a temas claro e escuro (light/dark mode)
-- Navbar responsiva com menu hambúrguer em telas menores
-- Footer com links e tema dinâmico
