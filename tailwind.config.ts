@@ -33,7 +33,8 @@ export default {
           dark: "#332D41",
         },
         surface: {
-          light: "#FFFBFE",
+          // light: "#FFFBFE",
+          light: "#FFFFFF",
           dark: "#1C1B1F",
         },
         onSurface: {

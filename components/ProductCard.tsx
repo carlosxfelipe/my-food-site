@@ -34,17 +34,18 @@ export default function ProductCard({
   return (
     <div
       class={`group w-full max-w-[380px] rounded-xl overflow-hidden border transition
-        bg-surface-light dark:bg-surface-dark
-        border-outline-light/40 dark:border-outline-dark/40
-        ${cls}`}
+    bg-surface-light dark:bg-surface-dark
+    border-outline-light/40 dark:border-outline-dark/40
+    flex flex-col h-full
+    ${cls}`}
       role={onClick ? "button" : undefined}
       onClick={onClick}
     >
-      <div class="relative aspect-[4/3]">
+      <div class="relative aspect-[4/3] shrink-0 overflow-hidden">
         <img
           src={product.image}
           alt={product.name}
-          class="w-full h-full object-cover"
+          class="absolute inset-0 w-full h-full object-cover block"
           loading="lazy"
         />
         {!!product.tags?.length && (
@@ -92,7 +93,7 @@ export default function ProductCard({
           </div>
         )}
       </div>
-      <div class="p-3 flex flex-col gap-1">
+      <div class="p-3 flex flex-col gap-1 flex-1">
         <h3 class="text-sm font-extrabold leading-5 min-h-[36px]
             text-onSurface-light dark:text-onSurface-dark">
           {product.name}
@@ -149,7 +150,7 @@ export default function ProductCard({
           </div>
         )}
       </div>
-      <div class="mt-auto p-3 bg-surfaceVariant-light/60 dark:bg-surfaceVariant-dark/60">
+      <div class="mt-auto p-3 bg-surfaceVariant-light/60 dark:bg-surfaceVariant-dark/60 shrink-0">
         {quantity === 0
           ? (
             <Button
