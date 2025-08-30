@@ -54,7 +54,7 @@ export default function OrdersView() {
   const containerClass =
     "flex flex-col gap-4 pb-[calc(env(safe-area-inset-bottom)+92px)] md:pb-0";
 
-  const totalBarClass = "sticky md:bottom-3 rounded-xl px-4 py-3 border " +
+  const totalBarClass = "sticky z-30 md:bottom-3 rounded-xl px-4 py-3 border " +
     "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
     "border-outline-light/40 dark:border-outline-dark/40 " +
     "flex items-center justify-between gap-3";

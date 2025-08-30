@@ -33,7 +33,7 @@ export default function ProductGrid(
     "flex flex-col gap-4 pb-[calc(env(safe-area-inset-bottom)+92px)] md:pb-0";
 
   const subtotalBarClass =
-    "sticky bottom-[calc(env(safe-area-inset-bottom)+80px)] md:bottom-3 mx-1 md:mx-0 rounded-xl px-4 py-5 border " +
+    "sticky z-30 bottom-[calc(env(safe-area-inset-bottom)+80px)] md:bottom-3 mx-1 md:mx-0 rounded-xl px-4 py-5 border " +
     "bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur " +
     "border-outline-light/40 dark:border-outline-dark/40 " +
     "flex items-center justify-between";
