@@ -1,58 +1,6 @@
-import {
-  mdiAccount,
-  mdiAccountOutline,
-  mdiBellOutline,
-  mdiCartOff,
-  mdiCartOutline,
-  mdiChevronRight,
-  mdiCookieOff,
-  mdiCreditCardOutline,
-  mdiHeart,
-  mdiHeartOff,
-  mdiHeartOutline,
-  mdiHelpCircleOutline,
-  mdiHome,
-  mdiHomeOutline,
-  mdiLockOutline,
-  mdiLogout,
-  mdiMapMarkerOutline,
-  mdiMinus,
-  mdiPackageVariant,
-  mdiPackageVariantClosed,
-  mdiPlus,
-  mdiStar,
-  mdiStarHalfFull,
-  mdiStarOutline,
-} from "https://esm.sh/@mdi/js@7.4.47";
+import { ICONS } from "../icons/paths.ts";
 
-const MAP = {
-  home: mdiHome,
-  "home-outline": mdiHomeOutline,
-  "package-variant": mdiPackageVariant,
-  "package-variant-closed": mdiPackageVariantClosed,
-  heart: mdiHeart,
-  "heart-outline": mdiHeartOutline,
-  "heart-off": mdiHeartOff,
-  account: mdiAccount,
-  "account-outline": mdiAccountOutline,
-  "cart-outline": mdiCartOutline,
-  "cart-off": mdiCartOff,
-  star: mdiStar,
-  "star-outline": mdiStarOutline,
-  "star-half-full": mdiStarHalfFull,
-  minus: mdiMinus,
-  plus: mdiPlus,
-  "cookie-off": mdiCookieOff,
-  "map-marker-outline": mdiMapMarkerOutline,
-  "credit-card-outline": mdiCreditCardOutline,
-  "bell-outline": mdiBellOutline,
-  "help-circle-outline": mdiHelpCircleOutline,
-  "lock-outline": mdiLockOutline,
-  "chevron-right": mdiChevronRight,
-  logout: mdiLogout,
-} as const;
-
-export type IconName = keyof typeof MAP;
+export type IconName = keyof typeof ICONS;
 
 type Props = {
   name: IconName;
@@ -64,7 +12,7 @@ type Props = {
 export default function Icon(
   { name, size = 24, class: cls = "", ariaLabel }: Props,
 ) {
-  const path = MAP[name];
+  const d = ICONS[name];
   const px = typeof size === "number" ? `${size}px` : size;
   return (
     <svg
@@ -76,7 +24,7 @@ export default function Icon(
       role="img"
       fill="currentColor"
     >
-      <path d={path} />
+      <path d={d} />
     </svg>
   );
 }
