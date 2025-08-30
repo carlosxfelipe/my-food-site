@@ -94,10 +94,10 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
       <div class={`mx-3 md:mx-6 ${surfaceGlass}`}>
         <div class={row}>
           <div class="flex items-center gap-3 flex-1 min-w-0">
-            <div class="flex items-center gap-2 shrink-0">
+            <a href="/" class="flex items-center gap-2">
               <Logo size={32} />
               <span class="hidden sm:inline font-bold text-lg">My Food</span>
-            </div>
+            </a>
 
             <form
               action="/"

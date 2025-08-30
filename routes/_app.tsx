@@ -11,12 +11,12 @@ export default function App({ Component }: PageProps) {
 
         <meta
           name="theme-color"
-          content="#6750A4"
+          content="#F2F2F7"
           media="(prefers-color-scheme: light)"
         />
         <meta
           name="theme-color"
-          content="#1C1B1F"
+          content="#121212"
           media="(prefers-color-scheme: dark)"
         />
 

@@ -1,5 +1,6 @@
 import Icon from "../components/Icon.tsx";
 import { Button } from "../components/Button.tsx";
+import { count as favoritesCount } from "../state/favorites.ts";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -64,8 +65,6 @@ export default function ProfileView() {
     avatar:
       "https://avatars.githubusercontent.com/u/85801709?s=400&u=01cce0318ea853ce1a133699bc6b2af1919094d6&v=4",
   };
-
-  const favoritesCount = 7;
 
   const headerCardClass =
     "rounded-xl border border-outline-light/40 dark:border-outline-dark/40 p-3 bg-surface-light dark:bg-surface-dark";
