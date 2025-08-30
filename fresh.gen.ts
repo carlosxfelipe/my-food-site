@@ -8,8 +8,8 @@ import * as $favorites from "./routes/favorites.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $orders from "./routes/orders.tsx";
 import * as $profile from "./routes/profile.tsx";
+import * as $CartBadge from "./islands/CartBadge.tsx";
 import * as $FavoritesView from "./islands/FavoritesView.tsx";
-import * as $Navbar from "./islands/Navbar.tsx";
 import * as $OrdersView from "./islands/OrdersView.tsx";
 import * as $ProductGrid from "./islands/ProductGrid.tsx";
 import * as $ProfileView from "./islands/ProfileView.tsx";
@@ -25,8 +25,8 @@ const manifest = {
     "./routes/profile.tsx": $profile,
   },
   islands: {
+    "./islands/CartBadge.tsx": $CartBadge,
     "./islands/FavoritesView.tsx": $FavoritesView,
-    "./islands/Navbar.tsx": $Navbar,
     "./islands/OrdersView.tsx": $OrdersView,
     "./islands/ProductGrid.tsx": $ProductGrid,
     "./islands/ProfileView.tsx": $ProfileView,

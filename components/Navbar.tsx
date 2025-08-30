@@ -1,8 +1,6 @@
-import { useEffect } from "preact/hooks";
-import { signal, useSignal } from "@preact/signals";
-import Icon, { IconName } from "../components/Icon.tsx";
-import Logo from "../components/Logo.tsx";
-import { count } from "../state/cart.ts";
+import Icon, { IconName } from "./Icon.tsx";
+import Logo from "./Logo.tsx";
+import CartBadge from "../islands/CartBadge.tsx";
 
 type LinkDef = {
   href: string;
@@ -45,10 +43,10 @@ const NAV_LINKS: LinkDef[] = [
   { href: "/profile", icon: "account", iconOutline: "account-outline" },
 ];
 
-const activePathSig = signal("/");
-
-function NavLink({ link }: { link: LinkDef }) {
-  const isActive = activePathSig.value === link.href;
+function NavLink(
+  { link, currentPath }: { link: LinkDef; currentPath: string },
+) {
+  const isActive = currentPath === link.href;
   return (
     <a
       href={link.href}
@@ -56,38 +54,13 @@ function NavLink({ link }: { link: LinkDef }) {
       aria-current={isActive ? "page" : undefined}
     >
       <Icon name={isActive ? link.icon : link.iconOutline} size={26} />
-      {link.withBadge && count.value > 0 && (
-        <span class="absolute -top-1 -right-1 w-5 h-5 rounded-full text-[10px] leading-none
-                 font-extrabold flex items-center justify-center
-                 bg-favorite-light text-white ring-2
-                 ring-background-light dark:ring-background-dark">
-          {count.value}
-        </span>
-      )}
+      {link.withBadge && <CartBadge />}
     </a>
   );
 }
 
 export default function Navbar({ currentPath }: { currentPath?: string }) {
-  // SSR-safe: inicializa com prop; no cliente, sincroniza com location
-  const once = useSignal(false);
-  useEffect(() => {
-    if (once.value) return;
-    once.value = true;
-    const initial =
-      typeof window !== "undefined" && globalThis.location?.pathname
-        ? globalThis.location.pathname
-        : currentPath ?? "/";
-    activePathSig.value = initial;
-
-    // atualiza ao navegar via history API (caso seu router use pushState)
-    const handlePop = () => {
-      activePathSig.value = globalThis.location.pathname;
-    };
-    globalThis.addEventListener("popstate", handlePop);
-    return () => globalThis.removeEventListener("popstate", handlePop);
-  }, [currentPath]);
-
+  const path = currentPath ?? "/";
   return (
     <nav class={topShell}>
       {/* topo */}
@@ -117,17 +90,16 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
                 placeholder="Buscar por nome, SKU, tag…"
                 aria-label="Buscar produtos"
                 class={inputClass}
-                defaultValue={typeof window !== "undefined"
-                  ? new URLSearchParams(globalThis.location.search).get("q") ??
-                    ""
-                  : ""}
+                defaultValue=""
               />
             </form>
           </div>
 
           {/* desktop */}
           <div class="hidden md:flex items-center gap-3 text-2xl">
-            {NAV_LINKS.map((link) => <NavLink key={link.href} link={link} />)}
+            {NAV_LINKS.map((link) => (
+              <NavLink key={link.href} link={link} currentPath={path} />
+            ))}
           </div>
         </div>
       </div>
@@ -136,7 +108,9 @@ export default function Navbar({ currentPath }: { currentPath?: string }) {
       <div
         class={`md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 px-3 py-2 text-2xl flex items-center gap-3 ${surfaceGlass}`}
       >
-        {NAV_LINKS.map((link) => <NavLink key={link.href} link={link} />)}
+        {NAV_LINKS.map((link) => (
+          <NavLink key={link.href} link={link} currentPath={path} />
+        ))}
       </div>
     </nav>
   );

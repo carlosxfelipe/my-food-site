@@ -1,5 +1,5 @@
 import { ComponentChildren } from "preact";
-import Navbar from "../islands/Navbar.tsx";
+import Navbar from "../components/Navbar.tsx";
 
 interface LayoutProps {
   children: ComponentChildren;
