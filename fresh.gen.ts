@@ -4,14 +4,11 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_joke from "./routes/api/joke.ts";
 import * as $favorites from "./routes/favorites.tsx";
-import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $orders from "./routes/orders.tsx";
 import * as $profile from "./routes/profile.tsx";
 import * as $FavoritesView from "./islands/FavoritesView.tsx";
-import * as $JokeDisplay from "./islands/JokeDisplay.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
 import * as $OrdersView from "./islands/OrdersView.tsx";
 import * as $ProductGrid from "./islands/ProductGrid.tsx";
@@ -22,16 +19,13 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/joke.ts": $api_joke,
     "./routes/favorites.tsx": $favorites,
-    "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
     "./routes/orders.tsx": $orders,
     "./routes/profile.tsx": $profile,
   },
   islands: {
     "./islands/FavoritesView.tsx": $FavoritesView,
-    "./islands/JokeDisplay.tsx": $JokeDisplay,
     "./islands/Navbar.tsx": $Navbar,
     "./islands/OrdersView.tsx": $OrdersView,
     "./islands/ProductGrid.tsx": $ProductGrid,
