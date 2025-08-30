@@ -3,6 +3,7 @@ import ProductCard from "../components/ProductCard.tsx";
 import { clear, dec, inc, qty } from "../state/cart.ts";
 import { formatBRL } from "../utils/currency.ts";
 import { LinkButton } from "../components/LinkButton.tsx";
+import Icon from "../components/Icon.tsx";
 
 type CartItem = Product & { quantity: number };
 
@@ -23,8 +24,13 @@ export default function OrdersView() {
   if (items.length === 0) {
     return (
       <div class="min-h-[60vh] grid place-items-center">
-        <div class="text-center">
-          <h2 class="text-2xl font-bold text-onSurface-light dark:text-onSurface-dark">
+        <div class="text-center max-w-sm mx-auto">
+          <Icon
+            name="cart-off"
+            size={56}
+            class="mx-auto text-outline-light dark:text-outline-dark"
+          />
+          <h2 class="text-2xl font-bold mt-2 text-onSurface-light dark:text-onSurface-dark">
             Seu carrinho está vazio
           </h2>
           <p class="mt-2 text-onSurface-light/80 dark:text-onSurface-dark/80">
