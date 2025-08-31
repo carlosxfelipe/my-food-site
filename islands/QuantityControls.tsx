@@ -1,3 +1,4 @@
+import { memo } from "preact/compat";
 import { Button } from "../components/Button.tsx";
 import IconButton from "../components/IconButton.tsx";
 
@@ -10,7 +11,7 @@ type Props = {
   outOfStock: boolean;
 };
 
-export default function QuantityControls({
+function QuantityControlsBase({
   quantity,
   stock,
   onAdd,
@@ -63,3 +64,5 @@ export default function QuantityControls({
     </div>
   );
 }
+
+export default memo(QuantityControlsBase);
