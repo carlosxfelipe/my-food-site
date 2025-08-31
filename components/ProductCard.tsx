@@ -16,6 +16,12 @@ type Props = {
   onToggleFavorite?: () => void;
 };
 
+function withWidth(url: string, w: number) {
+  if (/([?&])w=\d+/.test(url)) return url.replace(/([?&])w=\d+/, `$1w=${w}`);
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}w=${w}`;
+}
+
 export default function ProductCard({
   product,
   quantity,
@@ -30,6 +36,9 @@ export default function ProductCard({
   const outOfStock = product.stock === 0;
   const fullStars = Math.floor(product.rating ?? 0);
   const hasHalf = (product.rating ?? 0) - fullStars >= 0.5;
+  const srcSet = [360, 540, 720, 960].map((w) =>
+    `${withWidth(product.image, w)} ${w}w`
+  ).join(", ");
 
   return (
     <div
@@ -45,8 +54,13 @@ export default function ProductCard({
         <img
           src={product.image}
           alt={product.name}
+          width={800}
+          height={600}
           class="absolute inset-0 w-full h-full object-cover block"
           loading="lazy"
+          decoding="async"
+          srcSet={srcSet}
+          sizes="(max-width: 640px) 100vw, 33vw"
         />
         {!!product.tags?.length && (
           <div class="absolute top-2 left-2 right-12 flex gap-2 flex-wrap">
