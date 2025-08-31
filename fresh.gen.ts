@@ -13,6 +13,7 @@ import * as $FavoritesView from "./islands/FavoritesView.tsx";
 import * as $OrdersView from "./islands/OrdersView.tsx";
 import * as $ProductGrid from "./islands/ProductGrid.tsx";
 import * as $ProfileView from "./islands/ProfileView.tsx";
+import * as $QuantityControls from "./islands/QuantityControls.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -30,6 +31,7 @@ const manifest = {
     "./islands/OrdersView.tsx": $OrdersView,
     "./islands/ProductGrid.tsx": $ProductGrid,
     "./islands/ProfileView.tsx": $ProfileView,
+    "./islands/QuantityControls.tsx": $QuantityControls,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

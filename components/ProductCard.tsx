@@ -1,8 +1,7 @@
 import Icon from "./Icon.tsx";
-import { Button } from "./Button.tsx";
-import IconButton from "./IconButton.tsx";
 import type { Product } from "../data/products.ts";
 import { formatBRL } from "../utils/currency.ts";
+import QuantityControls from "../islands/QuantityControls.tsx";
 
 type Props = {
   product: Product;
@@ -164,49 +163,14 @@ export default function ProductCard({
           </div>
         )}
       </div>
-      <div class="mt-auto p-3 bg-surfaceVariant-light/60 dark:bg-surfaceVariant-dark/60 shrink-0">
-        {quantity === 0
-          ? (
-            <Button
-              type="button"
-              text="Adicionar"
-              icon="cart-outline"
-              onClick={(e) => {
-                e.stopPropagation();
-                onAdd();
-              }}
-              disabled={outOfStock}
-              fullWidth
-            />
-          )
-          : (
-            <div class="flex items-center justify-between">
-              <IconButton
-                type="button"
-                icon="minus"
-                ariaLabel="Diminuir quantidade"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onDecrease();
-                }}
-              />
-              <span class="min-w-6 text-center font-extrabold
-              text-onSurface-light dark:text-onSurface-dark">
-                {quantity}
-              </span>
-              <IconButton
-                type="button"
-                icon="plus"
-                ariaLabel="Aumentar quantidade"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onIncrease();
-                }}
-                disabled={quantity >= product.stock}
-              />
-            </div>
-          )}
-      </div>
+      <QuantityControls
+        quantity={quantity}
+        stock={product.stock}
+        onAdd={onAdd}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        outOfStock={outOfStock}
+      />
     </div>
   );
 }
