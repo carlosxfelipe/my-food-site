@@ -1,5 +1,7 @@
 # My Food
 
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge.svg)](https://fresh.deno.dev)
+
 **[My Food](https://my-food-site.carlosxfelipe.deno.net/)** é uma aplicação
 construída com [Fresh](https://fresh.deno.dev), um framework moderno para Deno
 que combina desempenho, simplicidade e renderização server-side reativa. O
@@ -18,3 +20,17 @@ deno task start
 ```
 
 Isso irá observar o diretório do projeto e reiniciar conforme necessário.
+
+## Licença
+
+Este projeto é licenciado sob os termos da **GNU General Public License v3.0 or
+later**.
+
+Você pode ver a licença completa em [`LICENSE`](./LICENSE) ou acessá-la
+diretamente [aqui](https://www.gnu.org/licenses/gpl-3.0.txt).
+
+---
+
+> Projeto desenvolvido com ❤️ por
+> [@carlosxfelipe](https://github.com/carlosxfelipe). Contribuições são
+> bem-vindas!
