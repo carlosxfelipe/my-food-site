@@ -18,7 +18,7 @@ export default function Skeleton({
   height = 16,
   radius = 8,
   variant = "rect",
-  animation = "shimmer",
+  animation = "pulse",
   class: className = "",
   "aria-label": ariaLabel = "Carregando",
 }: SkeletonProps) {
@@ -35,7 +35,6 @@ export default function Skeleton({
     [width, height, radius, variant],
   );
 
-  // Define cores e a variável --sk-hl via Tailwind (processado em build)
   const baseClasses = [
     "relative overflow-hidden",
     "bg-skeletonBase-light dark:bg-skeletonBase-dark",
@@ -55,15 +54,16 @@ export default function Skeleton({
       )}
 
       {animation === "shimmer" && (
-        <div class="sk-shimmer before:content-[''] before:absolute before:inset-0 before:rounded-inherit before:bg-[linear-gradient(100deg,transparent_0%,rgba(0,0,0,0)_35%,var(--sk-hl)_50%,rgba(0,0,0,0)_65%,transparent_100%)]" />
+        <div class="sk-shimmer">
+          <div class="sk-bar" />
+        </div>
       )}
 
       <style>
         {`
-        /* Acessibilidade: respeita prefer-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
           .sk-pulse, .sk-shimmer { animation: none !important; }
-          .sk-pulse::before, .sk-shimmer::before { opacity: 0.4; }
+          .sk-pulse::before, .sk-shimmer, .sk-bar { opacity: 0.4 !important; }
         }
 
         .sk-pulse::before {
@@ -76,19 +76,31 @@ export default function Skeleton({
           100% { opacity: 0.4; }
         }
 
-        .sk-shimmer::before {
-          animation: sk-shimmer 1.25s ease-in-out infinite;
-          background-size: 200% 100%;
-          background-position: -150% 0;
-          opacity: 0.85;
-        }
-        @keyframes sk-shimmer {
-          100% { background-position: 150% 0; }
-        }
-
-        .sk-pulse::before,
-        .sk-shimmer::before {
+        .sk-shimmer {
+          position: absolute;
+          inset: 0;
           border-radius: inherit;
+          overflow: hidden;
+        }
+        .sk-bar {
+          position: absolute;
+          top: -10%;
+          bottom: -10%;
+          width: 50%;
+          background: linear-gradient(
+            100deg,
+            transparent 0%,
+            rgba(0,0,0,0) 35%,
+            var(--sk-hl) 50%,
+            rgba(0,0,0,0) 65%,
+            transparent 100%
+          );
+          transform: translateX(-150%);
+          animation: sk-shimmer-x 1.1s ease-in-out infinite;
+          will-change: transform;
+        }
+        @keyframes sk-shimmer-x {
+          100% { transform: translateX(150%); }
         }
       `}
       </style>
