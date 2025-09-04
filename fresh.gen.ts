@@ -9,11 +9,12 @@ import * as $index from "./routes/index.tsx";
 import * as $orders from "./routes/orders.tsx";
 import * as $profile from "./routes/profile.tsx";
 import * as $CartBadge from "./islands/CartBadge.tsx";
+import * as $FavButton from "./islands/FavButton.tsx";
 import * as $FavoritesView from "./islands/FavoritesView.tsx";
 import * as $OrdersView from "./islands/OrdersView.tsx";
 import * as $ProductGrid from "./islands/ProductGrid.tsx";
 import * as $ProfileView from "./islands/ProfileView.tsx";
-import * as $QuantityControls from "./islands/QuantityControls.tsx";
+import * as $QtyFooter from "./islands/QtyFooter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -27,11 +28,12 @@ const manifest = {
   },
   islands: {
     "./islands/CartBadge.tsx": $CartBadge,
+    "./islands/FavButton.tsx": $FavButton,
     "./islands/FavoritesView.tsx": $FavoritesView,
     "./islands/OrdersView.tsx": $OrdersView,
     "./islands/ProductGrid.tsx": $ProductGrid,
     "./islands/ProfileView.tsx": $ProfileView,
-    "./islands/QuantityControls.tsx": $QuantityControls,
+    "./islands/QtyFooter.tsx": $QtyFooter,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
