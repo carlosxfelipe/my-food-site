@@ -1,7 +1,8 @@
 import ProductCard from "../components/ProductCard.tsx";
+import ProductCardSkeleton from "../components/ProductCardSkeleton.tsx";
 import type { Product } from "../data/products.ts";
 import { dec, inc, qty } from "../state/cart.ts";
-import { useMemo } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import type { JSX } from "preact";
 import { formatBRL } from "../utils/currency.ts";
 import { has as hasFav, toggle as toggleFav } from "../state/favorites.ts";
@@ -10,18 +11,40 @@ type Props = {
   products: Product[];
   minColWidth?: number;
   gap?: number;
+  isLoading?: boolean;
+  skeletonCount?: number;
+  initialLoading?: boolean;
 };
 
 export default function ProductGrid(
-  { products, minColWidth = 180, gap = 12 }: Props,
+  {
+    products,
+    minColWidth = 180,
+    gap = 12,
+    isLoading: forcedLoading,
+    skeletonCount = 16,
+    initialLoading = false,
+  }: Props,
 ) {
+  const [hydrating, setHydrating] = useState(initialLoading);
+  useEffect(() => {
+    if (!initialLoading) return;
+    const t = setTimeout(() => setHydrating(false), 300);
+    return () => clearTimeout(t);
+  }, [initialLoading]);
+
+  const isLoading = typeof forcedLoading === "boolean"
+    ? forcedLoading
+    : hydrating;
+
   const subtotal = useMemo(() => {
+    if (isLoading) return 0;
     const map = qty.value;
     return products.reduce(
       (acc, p) => acc + Number(p.price) * Number(map[p.id] ?? 0),
       0,
     );
-  }, [products, qty.value]);
+  }, [products, qty.value, isLoading]);
 
   const gridStyle: JSX.CSSProperties = {
     display: "grid",
@@ -38,25 +61,29 @@ export default function ProductGrid(
     "border-outline-light/40 dark:border-outline-dark/40 " +
     "flex items-center justify-between";
 
+  const list = isLoading ? Array.from({ length: skeletonCount }) : products;
+
   return (
-    <div class={containerClass}>
+    <div class={containerClass} aria-busy={isLoading ? "true" : undefined}>
       <div style={gridStyle} class="grid justify-items-center">
-        {products.map((p) => {
-          const q = qty.value[p.id] ?? 0;
-          const isFavorite = hasFav(p.id);
-          return (
-            <ProductCard
-              key={p.id}
-              product={p}
-              quantity={q}
-              onAdd={() => inc(p.id, p.stock)}
-              onIncrease={() => inc(p.id, p.stock)}
-              onDecrease={() => dec(p.id)}
-              isFavorite={isFavorite}
-              onToggleFavorite={() => toggleFav(p.id)}
-            />
-          );
-        })}
+        {isLoading
+          ? list.map((_, i) => <ProductCardSkeleton key={`sk-${i}`} />)
+          : products.map((p) => {
+            const q = qty.value[p.id] ?? 0;
+            const isFavorite = hasFav(p.id);
+            return (
+              <ProductCard
+                key={p.id}
+                product={p}
+                quantity={q}
+                onAdd={() => inc(p.id, p.stock)}
+                onIncrease={() => inc(p.id, p.stock)}
+                onDecrease={() => dec(p.id)}
+                isFavorite={isFavorite}
+                onToggleFavorite={() => toggleFav(p.id)}
+              />
+            );
+          })}
       </div>
 
       <div
@@ -70,7 +97,7 @@ export default function ProductGrid(
           </span>
         </div>
         <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
-          {formatBRL(subtotal)}
+          {isLoading ? "—" : formatBRL(subtotal)}
         </span>
       </div>
 
@@ -83,13 +110,14 @@ export default function ProductGrid(
             Subtotal
           </span>
           <span class="text-lg font-extrabold text-onSurface-light dark:text-onSurface-dark">
-            {formatBRL(subtotal)}
+            {isLoading ? "—" : formatBRL(subtotal)}
           </span>
         </div>
 
         <a
           href="/orders"
           class="w-full block text-center px-4 py-3 rounded-lg font-semibold bg-primary-light text-onPrimary-light dark:bg-primary-dark dark:text-onPrimary-dark hover:opacity-90"
+          aria-disabled={isLoading ? "true" : undefined}
         >
           Ver carrinho
         </a>
