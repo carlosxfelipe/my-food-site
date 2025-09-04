@@ -35,7 +35,7 @@ export default function Home(props: PageProps) {
             Nada encontrado. Tente buscar por nome, SKU ou tag.
           </p>
         )}
-        <ProductGrid products={products} columns={2} gap={12} />
+        <ProductGrid products={products} gap={12} />
       </div>
     </Layout>
   );

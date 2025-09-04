@@ -105,6 +105,14 @@ export default {
           light: "#EF4444",
           dark: "#F87171",
         },
+        skeletonBase: {
+          light: "#e0e0e0",
+          dark: "#333333",
+        },
+        skeletonHighlight: {
+          light: "#f5f5f5",
+          dark: "#555555",
+        },
       },
       fontFamily: {
         sans: ["Roboto", "sans-serif"],
