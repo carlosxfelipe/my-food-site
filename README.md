@@ -3,7 +3,7 @@
 [![Made with Fresh](https://fresh.deno.dev/fresh-badge.svg)](https://fresh.deno.dev)
 
 <p align="center">
-  <img src="./www/static/showcase/MyFood1x.jpg" alt="Preview do site My Food no modo claro" width="100%" />
+  <img src="./www/static/showcase/MyFood2x.jpg" alt="Preview do site My Food no modo claro" width="100%" />
 </p>
 
 **[My Food](https://my-food-site.carlosxfelipe.deno.net/)** é uma aplicação
