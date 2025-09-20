@@ -1,11 +1,10 @@
 import ProductCard from "../components/ProductCard.tsx";
 import ProductCardSkeleton from "../components/ProductCardSkeleton.tsx";
 import type { Product } from "../data/products.ts";
-import { dec, inc, qty } from "../state/cart.ts";
+import { qty } from "../state/cart.ts";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import type { JSX } from "preact";
 import { formatBRL } from "../utils/currency.ts";
-import { has as hasFav, toggle as toggleFav } from "../state/favorites.ts";
 
 type Props = {
   products: Product[];
@@ -68,22 +67,7 @@ export default function ProductGrid(
       <div style={gridStyle} class="grid justify-items-center">
         {isLoading
           ? list.map((_, i) => <ProductCardSkeleton key={`sk-${i}`} />)
-          : products.map((p) => {
-            const q = qty.value[p.id] ?? 0;
-            const isFavorite = hasFav(p.id);
-            return (
-              <ProductCard
-                key={p.id}
-                product={p}
-                quantity={q}
-                onAdd={() => inc(p.id, p.stock)}
-                onIncrease={() => inc(p.id, p.stock)}
-                onDecrease={() => dec(p.id)}
-                isFavorite={isFavorite}
-                onToggleFavorite={() => toggleFav(p.id)}
-              />
-            );
-          })}
+          : products.map((p) => <ProductCard key={p.id} product={p} />)}
       </div>
 
       <div

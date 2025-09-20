@@ -1,4 +1,4 @@
-import Icon from "../components/Icon.tsx";
+import Icon, { IconName } from "../components/Icon.tsx";
 import { Button } from "../components/Button.tsx";
 import { count as favoritesCount } from "../state/favorites.ts";
 
@@ -29,7 +29,7 @@ function SectionTitle({ title }: { title: string }) {
 
 function ActionRow(
   { icon, label, right, onClick }: {
-    icon: Parameters<typeof Icon>[0]["name"];
+    icon: IconName;
     label: string;
     right?: preact.ComponentChildren;
     onClick?: () => void;

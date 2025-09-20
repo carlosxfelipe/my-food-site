@@ -1,6 +1,6 @@
 import { MOCK_PRODUCTS, type Product } from "../data/products.ts";
 import ProductCard from "../components/ProductCard.tsx";
-import { clear, dec, inc, qty } from "../state/cart.ts";
+import { clear, qty } from "../state/cart.ts";
 import { formatBRL } from "../utils/currency.ts";
 import { LinkButton } from "../components/LinkButton.tsx";
 import Icon from "../components/Icon.tsx";
@@ -78,16 +78,7 @@ export default function OrdersView() {
         class="grid gap-3 justify-items-center"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
       >
-        {items.map((item) => (
-          <ProductCard
-            key={item.id}
-            product={item}
-            quantity={item.quantity}
-            onAdd={() => inc(item.id, item.stock)}
-            onIncrease={() => inc(item.id, item.stock)}
-            onDecrease={() => dec(item.id)}
-          />
-        ))}
+        {items.map((item) => <ProductCard key={item.id} product={item} />)}
       </div>
 
       <div

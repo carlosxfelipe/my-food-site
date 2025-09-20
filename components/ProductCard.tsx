@@ -50,7 +50,6 @@ export default function ProductCard({
           decoding="async"
           srcSet={srcSet}
           sizes="(max-width: 640px) 100vw, 33vw"
-          // fetchPriority="low"
         />
 
         {!!product.tags?.length && (

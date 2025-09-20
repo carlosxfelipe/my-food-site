@@ -1,7 +1,6 @@
 import { MOCK_PRODUCTS } from "../data/products.ts";
 import ProductCard from "../components/ProductCard.tsx";
-import { dec, inc, qty } from "../state/cart.ts";
-import { fav, ids as favIds, toggle as toggleFav } from "../state/favorites.ts";
+import { ids as favIds } from "../state/favorites.ts";
 import Icon from "../components/Icon.tsx";
 import { LinkButton } from "../components/LinkButton.tsx";
 
@@ -35,22 +34,7 @@ export default function FavoritesView() {
       class="grid gap-3 justify-items-center"
       style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
     >
-      {products.map((p) => {
-        const q = qty.value[p.id] ?? 0;
-        const isFavorite = Boolean(fav.value[p.id]);
-        return (
-          <ProductCard
-            key={p.id}
-            product={p}
-            quantity={q}
-            onAdd={() => inc(p.id, p.stock)}
-            onIncrease={() => inc(p.id, p.stock)}
-            onDecrease={() => dec(p.id)}
-            isFavorite={isFavorite}
-            onToggleFavorite={() => toggleFav(p.id)}
-          />
-        );
-      })}
+      {products.map((p) => <ProductCard key={p.id} product={p} />)}
     </div>
   );
 }
